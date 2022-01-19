@@ -4,7 +4,7 @@ const ToolIcon = ({ name }) => {
   let icon = require(`../images/icons/${name}.png`);
   
   return (
-    <div className="tool-icon">
+    <div className="tool-icon cursor-pointer">
       <img src={icon} alt={name} className="items-center w-8 h-8" />
     </div>
   );
