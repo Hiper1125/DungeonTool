@@ -8,8 +8,8 @@ const ToolBar = () => {
       <div className="bg-primary h-14 w-full rounded-full flex justify-start space-x-2 pl-2 items-center">
 
         {
-          Tools.map((Tool) => {
-            <ToolIcon name={Tool.name} />
+          Tools.map((Tool, index) => {
+            <ToolIcon key={index} name={Tool.name} />
           })
         }
 
