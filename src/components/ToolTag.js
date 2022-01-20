@@ -1,5 +1,4 @@
 import React from "react";
-import Triangle from "../images/ui/triangle.png";
 
 const ToolTag = ({ name }) => {
   return (
@@ -7,7 +6,7 @@ const ToolTag = ({ name }) => {
       <div className="w-full bg-gray rounded-lg">
           <h1 className="px-2 py-2">{name}</h1>
       </div>
-    <img src={Triangle} className="w-6 h-3 -mt-1"></img>
+    <img src="" className="w-6 h-3 -mt-1"></img>
     </div>
   );
 };
