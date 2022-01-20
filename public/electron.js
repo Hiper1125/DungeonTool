@@ -17,7 +17,7 @@ function createWindow() {
     },*/
     autoHideMenuBar: true,
     resizable: false,
-    icon: "",
+    icon: __dirname + "/favicon.ico",
   });
 
   // and load the index.html of the app.

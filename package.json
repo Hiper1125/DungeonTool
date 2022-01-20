@@ -1,8 +1,8 @@
 {
   "name": "dungeon-tool",
   "version": "0.1.0",
-  "description": "Dungeon Helper Application",
-  "author": "Xeda & Hiper",
+  "description": "Dungeon Tool Application",
+  "author": "Hiper & Xeda",
   "license": "CC0-1.0",
   "main": "public/electron.js",
   "private": true,
