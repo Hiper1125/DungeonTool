@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CharIcon = ({name}) => {
-  let icon = require(`../images/icons/${name}.png`);
+  let icon = require(`../../images/icons/${name}.png`);
 
   return <div className='character-icon h-3 w-auto'>
     <img src={icon} alt={name} className='cursor-pointer' />

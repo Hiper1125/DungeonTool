@@ -1,5 +1,5 @@
 import React from "react";
-import Tools from "../json/tools.json";
+import Tools from "../../json/tools.json";
 import ToolIcon from "./ToolIcon";
 
 const ToolBar = () => {
