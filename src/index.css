@@ -33,7 +33,10 @@ body{
   -ms-user-select: none;
 }
 
-/*  EX CSS  */
+.tool-tag {
+  transform: translate(-50%, -130%);
+}
+
 img {
   user-drag: none;
   -webkit-user-drag: none;
@@ -42,6 +45,7 @@ img {
   -webkit-user-select: none;
   -ms-user-select: none;
 }
+/*  EX CSS  */
 
 .center {
   position: absolute;
