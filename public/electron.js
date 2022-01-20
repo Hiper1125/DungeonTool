@@ -7,6 +7,8 @@ const RPC = require("discord-rpc");
 const client = new RPC.Client({ transport: "ipc" });
 const { clientId } = require("../config.json");
 
+const AudioManager = require("sound-play");
+
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -42,6 +44,10 @@ app.whenReady().then(() => {
 
   // Discord
   discordRPC();
+
+  // Audio
+  const filePath = path.join(__dirname, "../src/sounds/tool open.wav");
+  AudioManager.play(filePath);
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
