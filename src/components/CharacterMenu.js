@@ -7,7 +7,7 @@ const CharacterMenu = ({ characters }) => {
     <div className="character-menu h-full w-full">
         <div className="characters-top h-8 w-full px-2 flex justify-between items-center">
             <h3>CHARACTERS</h3>
-            <div className="characters-options flex">
+            <div className="characters-options flex space-x-1">
                 <CharIcon name="add" />
                 <CharIcon name="sort" />
                 <CharIcon name="search" />
