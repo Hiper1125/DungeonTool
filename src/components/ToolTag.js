@@ -6,9 +6,10 @@ const ToolTag = ({ name }) => {
       <div className="w-full bg-gray rounded-lg">
         <h1 className="px-2 py-2">{name}</h1>
       </div>
-      <div class="w-3 overflow-hidden inline-block">
-        <div class=" h-2 w-2 bg-gray -rotate-45 transform origin-top-left"></div>
+      <div className="w-3 overflow-hidden inline-block">
+        <div className=" h-2 w-2 bg-gray -rotate-45 transform origin-top-left"></div>
       </div>
+      <img src="" className="w-6 h-3 -mt-1"></img>
     </div>
   );
 };
