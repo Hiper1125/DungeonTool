@@ -2,7 +2,6 @@ import React from "react";
 import ActionButton from "./ActionButton";
 import ToolView from "./ToolView";
 import WindowButton from "./WindowButton";
-import Draggable from "react-draggable";
 
 const ToolWindow = ({
   name,
@@ -20,7 +19,6 @@ const ToolWindow = ({
   }
 
   return (
-    <Draggable>
       <div className="window absolute flex flex-col bg-solidgray w-[40rem] h-[30rem] rounded-lg border-primary border-[0.1rem] border-opacity-5 z-20">
         <div className="title-bar flex flex-row justify-between mt-1 mx-1">
           <h1 className="text-xs">
@@ -46,7 +44,6 @@ const ToolWindow = ({
           </div>
         </div>
       </div>
-    </Draggable>
   );
 };
 
@@ -59,19 +56,19 @@ ToolWindow.defaultProps = {
     {
       name: "minimize",
       action: (e) => {
-        //e.currentTarget.parentElement.getElementsByClassName("window")[0].classList.toggle("opacity-0");
+        e.currentTarget.parentElement.parentElement.parentElement.classList.toggle("hidden");
       },
     },
     {
       name: "expand",
       action: (e) => {
-        //e.currentTarget.parentElement.getElementsByClassName("window")[0].classList.toggle("full-screen");
+        e.currentTarget.parentElement.getElementsByClassName("window")[0].classList.toggle("full-screen");
       },
     },
     {
       name: "close",
       action: (e) => {
-        //e.currentTarget.parentElement.getElementsByClassName("window")[0].remove();
+        e.currentTarget.parentElement.getElementsByClassName("window")[0].remove();
       },
     },
   ],
