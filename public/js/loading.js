@@ -106,7 +106,7 @@ class AnimatedText extends Object3D {
     });
   }
 
-  show(duration = 1.75) {
+  show(duration = 1.5) {
     const tm = new TimelineLite();
     tm.set({}, {}, `+=${duration * 1.1}`);
     this.children.forEach((letter) => {

@@ -2,7 +2,7 @@ import React from "react";
 import ToolTag from "./ToolTag";
 
 const ToolIcon = ({ name }) => {
-  let icon = require(`../../images/icons/${name}.png`);
+  let icon = require(`../../assets/icons/${name}.png`);
 
   return (
     <div

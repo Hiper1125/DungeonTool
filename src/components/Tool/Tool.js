@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import ToolButton from "../ToolButton/ToolButton";
 import ToolWindow from "../ToolWindow/ToolWindow";
-import Monster from "../../images/assets/monster.png";
+import Monster from "../../assets/other/monster.png";
 
 class Tool extends React.Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class Tool extends React.Component {
   }
 
   sleep(ms) {
+    ms *= 1000;
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
@@ -27,14 +28,22 @@ class Tool extends React.Component {
     var loadingBar = document.querySelector(".progress");
     var loader = document.querySelector(".loader");
 
+    let freeze = (Math.random() * 40) + 20;
+    let hasFreezed = false;
+
     while (total < 100) {
-        var time = Math.random() * 500;
-
-        await this.sleep(time);
-
-        total += time / 50;
+        await this.sleep(0.1);
+        total += 5;
         loadingBar.style.width = total + "%";
+
+        if(total > freeze && hasFreezed == false)
+        {
+          await this.sleep((Math.random() * 3) + 1);
+          hasFreezed = true;
+        }
     }
+
+    await this.sleep(0.2);
 
     loader.classList.add("opacity-0");
 

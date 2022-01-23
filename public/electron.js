@@ -41,13 +41,11 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow();
+  AudioManager.play(path.join(__dirname, "../src/sounds/text.mp3"), 0.3);
 
   // Discord
   discordRPC();
-
-  // Audio
-  const filePath = path.join(__dirname, "../src/sounds/tool open.wav");
-  AudioManager.play(filePath);
+  AudioManager.play(path.join(__dirname, "../src/sounds/loaded.wav"), 0.6);
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common

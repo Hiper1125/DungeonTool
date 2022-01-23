@@ -1,6 +1,6 @@
 import React from "react";
 import ToolBar from "./ToolBar";
-import dice from "../../images/icons/dice.png";
+import dice from "../../assets/icons/dice.png";
 
 const ToolButton = () => {
   return (
