@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, session } = require("electron");
 const isDev = require("electron-is-dev");
 
 const path = require("path");
@@ -40,12 +40,12 @@ function createWindow() {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  createWindow();
   AudioManager.play(path.join(__dirname, "../src/sounds/text.mp3"), 0.3);
+  createWindow();
 
   // Discord
   discordRPC();
-  AudioManager.play(path.join(__dirname, "../src/sounds/loaded.wav"), 0.6);
+  AudioManager.play(path.join(__dirname, "../src/sounds/loaded.waw"), 0.3);
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
