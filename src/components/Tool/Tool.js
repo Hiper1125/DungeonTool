@@ -29,6 +29,8 @@ const Tool = () => {
           let freeze = Math.random() * 40 + 20;
           let hasFreezed = false;
 
+          await sleep(1);
+
           while (total < 100) {
             await sleep(0.1);
             total += 5;
