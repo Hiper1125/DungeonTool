@@ -26,9 +26,16 @@ const Tool = () => {
           var audioText = new Audio(onTextShow);
           var audioTool = new Audio(onToolReady);
 
-          audioText.play();
+          audioText.volume = 0.1;
+          audioTool.volume = 0.3;
 
-          await sleep(1);
+          await sleep(0.15);
+          audioText.play();
+          await sleep(0.85);
+
+          document.querySelector(".loading-bar").classList.add("active");
+
+          await sleep(0.85);
 
           while (total < 100) {
             await sleep(0.1);
@@ -36,7 +43,7 @@ const Tool = () => {
             loadingBar.style.width = total + "%";
 
             if (total > freeze && hasFreezed == false) {
-              await sleep(Math.random() * 3 + 1);
+              await sleep(Math.random() * 2 + 1);
               hasFreezed = true;
             }
           }

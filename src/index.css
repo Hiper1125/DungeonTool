@@ -10,7 +10,7 @@ body {
 
   overflow: hidden;
 
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #cdbe91; /* ? Boh, io il colore del font l'ho messo qui, va bene o metto per ogni testo la classe primary-...? */
 
   -webkit-font-smoothing: antialiased;
@@ -18,11 +18,11 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-body{
+body {
   user-drag: none;
   -webkit-user-drag: none;
   user-select: none;
@@ -95,23 +95,14 @@ img {
 /* LOADING */
 
 .loading-bar {
-  animation: loading-bar 1s ease-out;
+  width: 0;
+  bottom: -20px;
+  opacity: 0;
+  transition: all 0.5s ease-out;
 }
 
-@keyframes loading-bar {
-  0% {
-    width: 0;
-    bottom: -20px;
-    opacity: 0;
-  }
-  25% {
-    width: 0;
-    bottom: -20px;
-    opacity: 0;
-  }
-  100% {
-    width: 16rem;
-    bottom: 2.5rem;
-    opacity: 1;
-  }
+.loading-bar.active {
+  width: 16rem;
+  bottom: 2.5rem;
+  opacity: 1;
 }
