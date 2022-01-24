@@ -1,62 +1,60 @@
-import React from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import ToolButton from "../ToolButton/ToolButton";
 import ToolWindow from "../ToolWindow/ToolWindow";
 import Monster from "../../assets/other/monster.png";
+import useSound from "use-sound";
+import onTextShow from "../../sounds/text.mp3";
+import onToolReady from "../../sounds/loaded.wav";
+import { OnShow } from "@solariss/react-on-show";
 
-class Tool extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleLoad = this.handleLoad.bind(this);
-  }
+const Tool = () => {
+  const [text] = useSound(onTextShow);
+  const [tool] = useSound(onToolReady);
 
-  componentDidMount() {
-    window.addEventListener("load", this.handleLoad);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("load", this.handleLoad);
-  }
-
-  sleep(ms) {
+  const sleep = (ms) => {
     ms *= 1000;
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
 
-  async handleLoad() {
-    var total = 0;
-    var loadingBar = document.querySelector(".progress");
-    var loader = document.querySelector(".loader");
+  return (
+    <OnShow
+      handlers={{
+        enter: async () => {
+          var total = 0;
+          var loadingBar = document.querySelector(".progress");
+          var loader = document.querySelector(".loader");
 
-    let freeze = (Math.random() * 40) + 20;
-    let hasFreezed = false;
+          text();
 
-    while (total < 100) {
-        await this.sleep(0.1);
-        total += 5;
-        loadingBar.style.width = total + "%";
+          let freeze = Math.random() * 40 + 20;
+          let hasFreezed = false;
 
-        if(total > freeze && hasFreezed == false)
-        {
-          await this.sleep((Math.random() * 3) + 1);
-          hasFreezed = true;
-        }
-    }
+          while (total < 100) {
+            await sleep(0.1);
+            total += 5;
+            loadingBar.style.width = total + "%";
 
-    await this.sleep(0.2);
+            if (total > freeze && hasFreezed == false) {
+              await sleep(Math.random() * 3 + 1);
+              hasFreezed = true;
+            }
+          }
 
-    loader.classList.add("opacity-0");
+          await sleep(0.2);
 
-    loadingBar.style.width = "50%";
+          tool();
 
-    setTimeout(() => {
-      loader.remove();
-      document.querySelector(".tool").classList.remove("opacity-0");
-    }, 500);
-  }
+          loader.classList.add("opacity-0");
 
-  render() {
-    return (
+          loadingBar.style.width = "50%";
+
+          setTimeout(() => {
+            loader.remove();
+            document.querySelector(".tool").classList.remove("opacity-0");
+          }, 500);
+        },
+      }}
+    >
       <div className="tool h-screen w-screen relative overflow-hidden flex opacity-0">
         <img
           src={Monster}
@@ -67,8 +65,8 @@ class Tool extends React.Component {
         <ToolWindow />
         <ToolButton />
       </div>
-    );
-  }
-}
+    </OnShow>
+  );
+};
 
 export default Tool;
