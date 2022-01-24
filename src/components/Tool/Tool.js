@@ -31,12 +31,14 @@ class Tool extends React.Component {
     let freeze = (Math.random() * 40) + 20;
     let hasFreezed = false;
 
+    await this.sleep(1); // time for the bar to come up
+
     while (total < 100) {
         await this.sleep(0.1);
         total += 5;
         loadingBar.style.width = total + "%";
 
-        if(total > freeze && hasFreezed == false)
+        if(total > freeze && hasFreezed === false)
         {
           await this.sleep((Math.random() * 3) + 1);
           hasFreezed = true;
