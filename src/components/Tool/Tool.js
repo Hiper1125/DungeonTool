@@ -2,15 +2,11 @@ import Sidebar from "../Sidebar/Sidebar";
 import ToolButton from "../ToolButton/ToolButton";
 import ToolWindow from "../ToolWindow/ToolWindow";
 import Monster from "../../assets/other/monster.png";
-import useSound from "use-sound";
 import onTextShow from "../../sounds/text.mp3";
 import onToolReady from "../../sounds/loaded.wav";
 import { OnShow } from "@solariss/react-on-show";
 
 const Tool = () => {
-  const [text] = useSound(onTextShow);
-  const [tool] = useSound(onToolReady);
-
   const sleep = (ms) => {
     ms *= 1000;
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -27,9 +23,10 @@ const Tool = () => {
           let freeze = Math.random() * 40 + 20;
           let hasFreezed = false;
 
-          console.log(text);
+          var audioText = new Audio(onTextShow);
+          var audioTool = new Audio(onToolReady);
 
-          text();
+          audioText.play();
 
           await sleep(1);
 
@@ -46,7 +43,7 @@ const Tool = () => {
 
           await sleep(0.2);
 
-          tool();
+          audioTool.play();
 
           loader.classList.add("opacity-0");
 
@@ -66,7 +63,6 @@ const Tool = () => {
           className="absolute right-0 h-[35rem] z-1 top-1/2 -translate-y-1/2 saturate-0 opacity-[0.1]"
         ></img>
         <Sidebar />
-        <ToolWindow />
         <ToolButton />
       </div>
     </OnShow>
