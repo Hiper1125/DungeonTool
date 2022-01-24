@@ -24,10 +24,12 @@ const Tool = () => {
           var loadingBar = document.querySelector(".progress");
           var loader = document.querySelector(".loader");
 
-          text();
-
           let freeze = Math.random() * 40 + 20;
           let hasFreezed = false;
+
+          console.log(text);
+
+          text();
 
           await sleep(1);
 
