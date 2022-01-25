@@ -6,6 +6,9 @@ const path = require("path");
 const RPC = require("discord-rpc");
 const client = new RPC.Client({ transport: "ipc" });
 const { clientId } = require("../config.json");
+RPC.register(clientId);
+
+const startTimestamp = Date.now();
 
 function createWindow() {
   // Create the browser window.
@@ -68,32 +71,19 @@ const discordRPC = () => {
   let gameActivity = {
     details: "Campaign Name",
     state: "Playing as a role here",
-    assets: {
-      large_image: "game",
-      large_text: "ERPG :copyright: 2022",
-    },
-    party: {
-      size: [1, 5],
-      id: "1038919083913",
-    },
-    secrets: {
-      match: "381371838",
-      join: "89482748",
-    },
-    timestamps: { start: Date.now() },
-    instance: true,
+    largeImageKey: 'game',
+    smallImageKey: 'master',
+    startTimestamp,
+    instance: true
   };
 
   client.on("ready", async () => {
-    client.request("SET_ACTIVITY", {
-      pid: process.pid,
-      activity: gameActivity,
-    });
+    client.setActivity(gameActivity, process.pid);
     console.log("Client Ready.");
   });
   client.on("connected", async () => {
     console.log("RPC Connected.");
   });
 
-  client.login({ clientId: clientId });
+  client.login({clientId});
 };
