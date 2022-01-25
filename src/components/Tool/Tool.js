@@ -1,6 +1,5 @@
 import Sidebar from "../Sidebar/Sidebar";
 import ToolButton from "../ToolButton/ToolButton";
-import ToolWindow from "../ToolWindow/ToolWindow";
 import Monster from "../../assets/other/monster.png";
 import onTextShow from "../../sounds/text.mp3";
 import onToolReady from "../../sounds/loaded.wav";
