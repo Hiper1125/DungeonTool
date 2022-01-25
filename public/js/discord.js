@@ -8,16 +8,15 @@ const startTimestamp = Date.now();
 const connect = () => {
   return new Promise((resolve, reject) => {
     client.on("connected", async () => {
-      console.log("RPC Connected.");
+      console.log("[RPC]: Connected");
     });
 
     client.on("ready", async () => {
-      console.log("Client Ready.");
+      console.log("[RPC]: Ready");
+      resolve(client.user);
     });
 
     client.login({ clientId });
-
-    resolve();
   });
 };
 
@@ -34,8 +33,4 @@ const temp = () => {
   client.setActivity(gameActivity, process.pid);
 };
 
-const getUser = () => {
-  return client.user;
-};
-
-module.exports = { connect, getUser };
+module.exports = { connect };

@@ -1,13 +1,12 @@
 const { app, BrowserWindow, session } = require("electron");
+const { sessionStorage } = require("electron-browser-storage");
 const isDev = require("electron-is-dev");
-
 const path = require("path");
-
 const ds = require("./js/discord.js");
 
-function createWindow() {
+createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  const toolWindow = new BrowserWindow({
     width: 1280,
     height: 720,
     /*    webPreferences: {
@@ -20,7 +19,7 @@ function createWindow() {
 
   // and load the index.html of the app.
   // win.loadFile("index.html");
-  mainWindow.loadURL(
+  toolWindow.loadURL(
     isDev
       ? "http://localhost:3000"
       : `file://${path.join(__dirname, "../build/index.html")}`
@@ -28,9 +27,9 @@ function createWindow() {
 
   // Open the DevTools.
   if (isDev) {
-    mainWindow.webContents.openDevTools({ mode: "detach" });
+    toolWindow.webContents.openDevTools({ mode: "detach" });
   }
-}
+};
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -38,8 +37,13 @@ function createWindow() {
 app.whenReady().then(() => {
   createWindow();
 
-    ds.connect().then(() => {
+  ds.connect().then(async (user) => {
+    console.log("[RPC]: " + user.id);
+
+    sessionStorage.setItem("user", user).then(() => {
+      console.log(sessionStorage.getItem("user"));
     });
+  });
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
@@ -58,6 +62,3 @@ app.on("activate", () => {
     createWindow();
   }
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
