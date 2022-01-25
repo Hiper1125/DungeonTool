@@ -41,7 +41,7 @@ const Tool = () => {
             total += 5;
             loadingBar.style.width = total + "%";
 
-            if (total > freeze && hasFreezed == false) {
+            if (total > freeze && hasFreezed === false) {
               await sleep(Math.random() * 2 + 1);
               hasFreezed = true;
             }

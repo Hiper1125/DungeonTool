@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const ActionButton = ({ name, icon, action }) => {
   let iconImg = null;
   if (icon) {
-    iconImg = <img src={require(`../../assets/icons/${icon}.png`)}/>
+    iconImg = <img src={require(`../../assets/icons/${icon}.png`)} alt=""/>
   }
 
   return (

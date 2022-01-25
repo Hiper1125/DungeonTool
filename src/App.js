@@ -1,6 +1,5 @@
 import Loader from "./components/Loading/Loader";
 import Tool from "./components/Tool/Tool";
-import Fog from "./components/Extra/Fog";
 
 function App() {
   return (

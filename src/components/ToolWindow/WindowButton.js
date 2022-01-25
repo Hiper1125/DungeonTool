@@ -5,7 +5,7 @@ const WindowButton = ({ name, action }) => {
   
   return (
     <div className="window-button h-3 w-3 p-[1px] bg-primary rounded-full" onClick={action}>
-      <img className="h-auto w-auto" src={icon}/>
+      <img className="h-auto w-auto" src={icon} alt=""/>
     </div>
   );
 };

@@ -3,12 +3,7 @@ const isDev = require("electron-is-dev");
 
 const path = require("path");
 
-const RPC = require("discord-rpc");
-const client = new RPC.Client({ transport: "ipc" });
-const { clientId } = require("../config.json");
-RPC.register(clientId);
-
-const startTimestamp = Date.now();
+const ds = require("./js/discord.js");
 
 function createWindow() {
   // Create the browser window.
@@ -43,8 +38,8 @@ function createWindow() {
 app.whenReady().then(() => {
   createWindow();
 
-  // Discord
-  discordRPC();
+    ds.connect().then(() => {
+    });
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
@@ -66,24 +61,3 @@ app.on("activate", () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-
-const discordRPC = () => {
-  let gameActivity = {
-    details: "Campaign Name",
-    state: "Playing as a role here",
-    largeImageKey: 'game',
-    smallImageKey: 'master',
-    startTimestamp,
-    instance: true
-  };
-
-  client.on("ready", async () => {
-    client.setActivity(gameActivity, process.pid);
-    console.log("Client Ready.");
-  });
-  client.on("connected", async () => {
-    console.log("RPC Connected.");
-  });
-
-  client.login({clientId});
-};

@@ -9,7 +9,7 @@ const ToolTag = ({ name }) => {
       <div className="w-3 overflow-hidden inline-block">
         <div className=" h-2 w-2 bg-gray -rotate-45 transform origin-top-left"></div>
       </div>
-      <img src="" className="w-6 h-3 -mt-1"></img>
+      <img className="w-6 h-3 -mt-1" src="" alt=""></img>
     </div>
   );
 };
