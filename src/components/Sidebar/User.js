@@ -12,8 +12,8 @@ const User = ({ username, image }) => {
 };
 
 User.defaultProps = {
-  username: window.sessionStorage.getItem("user").id,
-  image: "https://cdn.discordapp.com/avatars/" + window.sessionStorage.getItem("user").id + "/" + window.sessionStorage.getItem("user").avatar,
+  username: window.localStorage.getItem("userName"),
+  image: "https://cdn.discordapp.com/avatars/" + window.localStorage.getItem("userId") + "/" + window.localStorage.getItem("userAvatar"),
 };
 
 export default User;

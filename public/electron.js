@@ -1,5 +1,4 @@
 const { app, BrowserWindow, session } = require("electron");
-const { sessionStorage } = require("electron-browser-storage");
 const isDev = require("electron-is-dev");
 const path = require("path");
 const ds = require("./js/discord.js");
@@ -17,8 +16,18 @@ createWindow = () => {
     icon: __dirname + "/favicon.ico",
   });
 
-  // and load the index.html of the app.
-  // win.loadFile("index.html");
+  ds.connect().then(async (user) => {
+    toolWindow.loadURL(
+      isDev
+        ? "http://localhost:3000"
+        : `file://${path.join(__dirname, "../build/index.html")}`
+    );
+
+    toolWindow.webContents.executeJavaScript(
+      `window.localStorage.setItem('userId', '${user.id}');window.localStorage.setItem('userAvatar', '${user.avatar}');window.localStorage.setItem('userName', '${user.username}#${user.discriminator}');`
+    );
+  });
+
   toolWindow.loadURL(
     isDev
       ? "http://localhost:3000"
@@ -36,14 +45,6 @@ createWindow = () => {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow();
-
-  ds.connect().then(async (user) => {
-    console.log("[RPC]: " + user.id);
-
-    sessionStorage.setItem("user", user).then(() => {
-      console.log(sessionStorage.getItem("user"));
-    });
-  });
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
