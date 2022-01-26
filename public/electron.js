@@ -2,6 +2,7 @@ const { app, BrowserWindow, session } = require("electron");
 const isDev = require("electron-is-dev");
 const path = require("path");
 const ds = require("./js/discord.js");
+const db = require("./js/database.js");
 
 createWindow = () => {
   // Create the browser window.
@@ -23,16 +24,22 @@ createWindow = () => {
         : `file://${path.join(__dirname, "../build/index.html")}`
     );
 
-    toolWindow.webContents.executeJavaScript(
-      `window.localStorage.setItem('userId', '${user.id}');window.localStorage.setItem('userAvatar', '${user.avatar}');window.localStorage.setItem('userName', '${user.username}#${user.discriminator}');`
-    );
-  });
+      db.findAllCharacters({ playerId: user.id });
 
-  toolWindow.loadURL(
-    isDev
-      ? "http://localhost:3000"
-      : `file://${path.join(__dirname, "../build/index.html")}`
-  );
+    toolWindow.webContents
+      .executeJavaScript(
+        `window.localStorage.setItem('userId', '${user.id}');
+      window.localStorage.setItem('userAvatar', '${user.avatar}');
+      window.localStorage.setItem('userName', '${user.username}#${user.discriminator}');`
+      )
+      .then(() => {
+        toolWindow.loadURL(
+          isDev
+            ? "http://localhost:3000"
+            : `file://${path.join(__dirname, "../build/index.html")}`
+        );
+      });
+  });
 
   // Open the DevTools.
   if (isDev) {
