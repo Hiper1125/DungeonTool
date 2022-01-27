@@ -3,24 +3,39 @@ const { MongoClient } = require("mongodb");
 
 const uri = `mongodb+srv://${dbUser}:${dbPassword}@${cluster}.yeabh.mongodb.net/${dbName}?retryWrites=true&w=majority`;
 
+const log = false;
+
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-const createCharacter = async (character) => {
+const connect = async () => {
   try {
     await client.connect();
-    console.log("[!]: Connected to database");
+    if (log) console.log("Connected to database");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const disconnect = async () => {
+  client.close();
+  if (log) console.log("Disconnected from database");
+};
+
+const createCharacter = async (character) => {
+  try {
+    await connect();
 
     const insertion = await client
       .db(dbName)
       .collection("characters")
       .insertOne(character);
-    console.log("[!]: Character inserted" + insertion.insertedId);
 
-    await client.close();
-    console.log("[!]: Disconnected from database");
+    if (log) console.log("[!]: Character inserted" + insertion.insertedId);
+
+    disconnect();
   } catch (error) {
     console.error(error);
   }
@@ -28,19 +43,19 @@ const createCharacter = async (character) => {
 
 const findCharacter = async (filter) => {
   try {
-    await client.connect();
-    console.log("[!]: Connected to database");
+    await connect();
 
     const character = await client
       .db(dbName)
       .collection("characters")
       .findOne(filter);
 
-    console.log("[!]: Character found");
-    console.log(character);
+    if (log) {
+      console.log("[!]: Character found");
+      console.log(character);
+    }
 
-    await client.close();
-    console.log("[!]: Disconnected from database");
+    disconnect();
 
     return character;
   } catch (error) {
@@ -50,19 +65,20 @@ const findCharacter = async (filter) => {
 
 const findAllCharacters = async (filter) => {
   try {
-    await client.connect();
-    console.log("[!]: Connected to database");
+    await connect();
 
     const character = await client
       .db(dbName)
       .collection("characters")
-      .find({}, { playerId: { $elemMatch: filter.playerId } })
-      .toArray(function (err, result) {
-        if (err) throw err;
-        console.log("result: " + result);
-        client.close();
-      });
-    console.log("[!]: Disconnected from database");
+      .find(filter)
+      .toArray();
+
+    if (log) {
+      console.log("[!]: Character found");
+      console.log(character);
+    }
+
+    disconnect();
 
     return character;
   } catch (error) {
@@ -72,19 +88,19 @@ const findAllCharacters = async (filter) => {
 
 const editCharacter = async (filter, updateParam) => {
   try {
-    await client.connect();
-    console.log("[!]: Connected to database");
+    await connect();
 
     const character = await client
       .db(dbName)
       .collection("characters")
       .updateOne(filter, updateParam);
 
-    console.log("[!]: Character found");
-    console.log(character);
+    if (log) {
+      console.log("[!]: Character found");
+      console.log(character);
+    }
 
-    await client.close();
-    console.log("[!]: Disconnected from database");
+    disconnect();
 
     return character;
   } catch (error) {
@@ -94,19 +110,19 @@ const editCharacter = async (filter, updateParam) => {
 
 const deleteCharacter = async (name) => {
   try {
-    await client.connect();
-    console.log("[!]: Connected to database");
+    await connect();
 
     const character = await client
       .db(dbName)
       .collection("characters")
       .deleteOne({ name: name });
 
-    console.log("[!]: Character found");
-    console.log(character);
+    if (log) {
+      console.log("[!]: Character found");
+      console.log(character);
+    }
 
-    await client.close();
-    console.log("[!]: Disconnected from database");
+    disconnect();
 
     return character;
   } catch (error) {

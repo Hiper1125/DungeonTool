@@ -24,8 +24,6 @@ createWindow = () => {
         : `file://${path.join(__dirname, "../build/index.html")}`
     );
 
-      db.findAllCharacters({ playerId: user.id });
-
     toolWindow.webContents
       .executeJavaScript(
         `window.localStorage.setItem('userId', '${user.id}');
