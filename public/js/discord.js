@@ -20,6 +20,12 @@ const connect = () => {
   });
 };
 
+const getUser = () => {
+  return new Promise(async (resolve, reject) => {
+    resolve(client.user);
+  });
+};
+
 const temp = () => {
   let gameActivity = {
     details: "Campaign Name",
@@ -33,4 +39,4 @@ const temp = () => {
   client.setActivity(gameActivity, process.pid);
 };
 
-module.exports = { connect };
+module.exports = { connect, getUser };

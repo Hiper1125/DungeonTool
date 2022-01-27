@@ -1,4 +1,4 @@
-const { app, BrowserWindow, session } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const isDev = require("electron-is-dev");
 const path = require("path");
 const ds = require("./js/discord.js");
@@ -9,9 +9,10 @@ createWindow = () => {
   const toolWindow = new BrowserWindow({
     width: 1280,
     height: 720,
-    /*    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-    },*/
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
     autoHideMenuBar: true,
     resizable: false,
     icon: __dirname + "/favicon.ico",
@@ -68,3 +69,7 @@ app.on("activate", () => {
     createWindow();
   }
 });
+
+ipcMain.on('get-user', async (event, arg) => {
+  event.returnValue = await ds.getUser();
+})
