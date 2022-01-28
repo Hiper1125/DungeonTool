@@ -5,7 +5,6 @@ const ds = require("./js/discord.js");
 const db = require("./js/database.js");
 
 createWindow = () => {
-  // Create the browser window.
   const toolWindow = new BrowserWindow({
     width: 1280,
     height: 720,
@@ -18,32 +17,17 @@ createWindow = () => {
     icon: __dirname + "/favicon.ico",
   });
 
-  ds.connect().then(async (user) => {
+  ds.connect().then(() => {
     toolWindow.loadURL(
       isDev
         ? "http://localhost:3000"
         : `file://${path.join(__dirname, "../build/index.html")}`
     );
 
-    toolWindow.webContents
-      .executeJavaScript(
-        `window.localStorage.setItem('userId', '${user.id}');
-      window.localStorage.setItem('userAvatar', '${user.avatar}');
-      window.localStorage.setItem('userName', '${user.username}#${user.discriminator}');`
-      )
-      .then(() => {
-        toolWindow.loadURL(
-          isDev
-            ? "http://localhost:3000"
-            : `file://${path.join(__dirname, "../build/index.html")}`
-        );
-      });
+    if (isDev) {
+      toolWindow.webContents.openDevTools({ mode: "detach" });
+    }
   });
-
-  // Open the DevTools.
-  if (isDev) {
-    toolWindow.webContents.openDevTools({ mode: "detach" });
-  }
 };
 
 // This method will be called when Electron has finished
@@ -70,6 +54,6 @@ app.on("activate", () => {
   }
 });
 
-ipcMain.on('get-user', async (event, arg) => {
+ipcMain.on("get-user", async (event, arg) => {
   event.returnValue = await ds.getUser();
-})
+});
