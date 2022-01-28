@@ -68,13 +68,13 @@ const Tool = () => {
         <img
           src={Monster}
           alt="monster"
-          className="absolute right-0 h-[35rem] z-1 top-1/2 -translate-y-1/2 saturate-0 opacity-[0.1] z-[11]"
+          className="absolute -right-[13rem] h-[35rem] z-1 top-1/2 -translate-y-1/2 saturate-0 opacity-40 z-[1]"
         ></img>
 
         <Sidebar />
         <ToolButton />
-        <VideoOverlay fileName={"fog"}/>
-        <VideoOverlay fileName={"dust"}/>
+        <VideoOverlay fileName={"fog"} opacity={0.1}/>
+        <VideoOverlay fileName={"dust"} opacity={0.05}/>
       </div>
     </OnShow>
   );
