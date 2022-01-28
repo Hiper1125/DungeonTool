@@ -64,11 +64,11 @@ const Tool = () => {
       }}
     >
       {" "}
-      <div className="tool h-screen w-screen relative overflow-hidden flex opacity-0">
+      <div className="tool h-screen w-screen relative overflow-hidden flex opacity-0 z-10">
         <img
           src={Monster}
           alt="monster"
-          className="absolute right-0 h-[35rem] z-1 top-1/2 -translate-y-1/2 saturate-0 opacity-[0.1]"
+          className="absolute right-0 h-[35rem] z-1 top-1/2 -translate-y-1/2 saturate-0 opacity-[0.1] z-[11]"
         ></img>
 
         <Sidebar />
