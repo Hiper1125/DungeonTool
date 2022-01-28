@@ -5,6 +5,7 @@ import Monster from "../../assets/other/monster.png";
 import onTextShow from "../../sounds/text.mp3";
 import onToolReady from "../../sounds/loaded.wav";
 import { OnShow } from "@solariss/react-on-show";
+const {ipcRenderer} = window.require("electron");
 
 const Tool = () => {
   const sleep = (ms) => {
@@ -59,18 +60,12 @@ const Tool = () => {
           setTimeout(() => {
             loader.remove();
             document.querySelector(".tool").classList.remove("opacity-0");
+            ipcRenderer.sendSync("tool-loaded");
           }, 500);
         },
       }}
     >
-      {" "}
       <div className="tool h-screen w-screen relative overflow-hidden flex opacity-0 z-10">
-        <img
-          src={Monster}
-          alt="monster"
-          className="absolute -right-[13rem] h-[35rem] z-1 top-1/2 -translate-y-1/2 saturate-0 opacity-40 z-[1]"
-        ></img>
-
         <Sidebar />
         <ToolButton />
         <VideoOverlay fileName={"fog"} opacity={0.1}/>

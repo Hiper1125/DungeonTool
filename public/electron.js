@@ -57,3 +57,15 @@ app.on("activate", () => {
 ipcMain.on("get-user", async (event, arg) => {
   event.returnValue = await ds.getUser();
 });
+
+ipcMain.on("tool-loaded", async (event, arg) => {
+  startTimestamp = ds.getTimeSinceStart();
+
+  event.returnValue = await ds.setActivity({
+    details: "Dungeon Tool",
+    state: "Idling on the client",
+    largeImageKey: "tool",
+    startTimestamp,
+    instance: true,
+  });
+});

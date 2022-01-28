@@ -13,7 +13,15 @@ const connect = () => {
 
     client.on("ready", async () => {
       console.log("[RPC]: Ready");
-      resolve(client.user);
+
+      setActivity({
+        details: "Dungeon Tool",
+        largeImageKey: "tool",
+        startTimestamp,
+        instance: true,
+      });
+
+      resolve(client);
     });
 
     client.login({ clientId });
@@ -26,17 +34,23 @@ const getUser = () => {
   });
 };
 
-const temp = () => {
-  let gameActivity = {
+const setActivity = (activity) => {
+  client.setActivity(activity, process.pid);
+};
+
+const Game = () => {
+  setActivity({
     details: "Campaign Name",
     state: "Playing as a role here",
     largeImageKey: "game",
     smallImageKey: "master",
     startTimestamp,
     instance: true,
-  };
-
-  client.setActivity(gameActivity, process.pid);
+  });
 };
 
-module.exports = { connect, getUser };
+const getTimeSinceStart = () => {
+  return startTimestamp;
+}
+
+module.exports = { connect, getUser, setActivity, getTimeSinceStart };
