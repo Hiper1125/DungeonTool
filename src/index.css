@@ -10,15 +10,25 @@ body {
 
   overflow: hidden;
 
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #cdbe91; /* ? Boh, io il colore del font l'ho messo qui, va bene o metto per ogni testo la classe primary-...? */
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  pointer-events: none;
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
