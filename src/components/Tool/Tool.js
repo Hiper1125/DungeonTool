@@ -1,5 +1,6 @@
 import Sidebar from "../Sidebar/Sidebar";
 import ToolButton from "../ToolButton/ToolButton";
+import VideoOverlay from "../Extra/VideoOverlay";
 import Monster from "../../assets/other/monster.png";
 import onTextShow from "../../sounds/text.mp3";
 import onToolReady from "../../sounds/loaded.wav";
@@ -62,14 +63,18 @@ const Tool = () => {
         },
       }}
     >
+      {" "}
       <div className="tool h-screen w-screen relative overflow-hidden flex opacity-0">
         <img
           src={Monster}
           alt="monster"
           className="absolute right-0 h-[35rem] z-1 top-1/2 -translate-y-1/2 saturate-0 opacity-[0.1]"
         ></img>
+
         <Sidebar />
         <ToolButton />
+        <VideoOverlay fileName={"fog"}/>
+        <VideoOverlay fileName={"dust"}/>
       </div>
     </OnShow>
   );
