@@ -61,6 +61,8 @@ ipcMain.on("get-user", async (event, arg) => {
 ipcMain.on("tool-loaded", async (event, arg) => {
   startTimestamp = ds.getTimeSinceStart();
 
+  startTimestamp = Date.now();
+
   event.returnValue = await ds.setActivity({
     details: "Dungeon Tool",
     state: "Idling on the client",
@@ -68,4 +70,6 @@ ipcMain.on("tool-loaded", async (event, arg) => {
     startTimestamp,
     instance: true,
   });
+
+  ds.setGame("Cardmilion", "master", 6, 1, "129348429", "1837813718");
 });

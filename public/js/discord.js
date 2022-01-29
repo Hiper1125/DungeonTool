@@ -38,14 +38,18 @@ const setActivity = (activity) => {
   client.setActivity(activity, process.pid);
 };
 
-const Game = () => {
+const setGame = (campaign, role, currentPlayers, maxPlayers, joinSecret, partyID) => {
   setActivity({
-    details: "Campaign Name",
-    state: "Playing as a role here",
+    details: campaign,
+    state: `Playing as a ${role}`,
     largeImageKey: "game",
-    smallImageKey: "master",
+    smallImageKey: role,
     startTimestamp,
     instance: true,
+    partySize: maxPlayers,
+    partyMax: currentPlayers,
+    partyId: partyID,
+    joinSecret: joinSecret
   });
 };
 
@@ -53,4 +57,4 @@ const getTimeSinceStart = () => {
   return startTimestamp;
 }
 
-module.exports = { connect, getUser, setActivity, getTimeSinceStart };
+module.exports = { connect, getUser, setActivity, setGame, getTimeSinceStart };
