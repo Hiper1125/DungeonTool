@@ -24,6 +24,10 @@ const connect = () => {
       resolve(client);
     });
 
+    client.on("activity_join_request", () => {
+      console.log("a");
+    })
+
     client.login({ clientId });
   });
 };
@@ -43,7 +47,9 @@ const setGame = (campaign, role, currentPlayers, maxPlayers, joinSecret, partyID
     details: campaign,
     state: `Playing as a ${role}`,
     largeImageKey: "game",
+    largeImageText: campaign,
     smallImageKey: role,
+    smallImageText: role,
     startTimestamp,
     instance: true,
     partySize: maxPlayers,
