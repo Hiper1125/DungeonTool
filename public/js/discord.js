@@ -16,6 +16,8 @@ const connect = () => {
 
       client.subscribe("ACTIVITY_JOIN");
       client.subscribe("ACTIVITY_JOIN_REQUEST");
+      client.subscribe("SEND_ACTIVITY_JOIN_INVITE");
+      client.subscribe("CLOSE_ACTIVITY_REQUEST");
 
       setActivity({
         details: "Dungeon Tool",
@@ -33,6 +35,10 @@ const connect = () => {
 
     client.on("ACTIVITY_JOIN", () => {
       console.log("Join");
+    })
+
+    client.on("SEND_ACTIVITY_JOIN_INVITE", () => {
+      console.log("Asked to join");
     })
 
     client.login({ clientId });

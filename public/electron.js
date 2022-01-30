@@ -71,5 +71,5 @@ ipcMain.on("tool-loaded", async (event, arg) => {
     instance: true,
   });
 
-  ds.setGame("Cardmilion", "master", 6, 1, "129348429", "1837813718");
+  //ds.setGame("Cardmilion", "master", 6, 1, "129348429", "1837813718");
 });
