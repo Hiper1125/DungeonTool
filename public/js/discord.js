@@ -14,6 +14,9 @@ const connect = () => {
     client.on("ready", async () => {
       console.log("[RPC]: Ready");
 
+      client.subscribe("ACTIVITY_JOIN");
+      client.subscribe("ACTIVITY_JOIN_REQUEST");
+
       setActivity({
         details: "Dungeon Tool",
         largeImageKey: "tool",
@@ -24,8 +27,12 @@ const connect = () => {
       resolve(client);
     });
 
-    client.on("activity_join_request", () => {
-      console.log("a");
+    client.on("ACTIVITY_JOIN_REQUEST", () => {
+      console.log("Join request");
+    })
+
+    client.on("ACTIVITY_JOIN", () => {
+      console.log("Join");
     })
 
     client.login({ clientId });
