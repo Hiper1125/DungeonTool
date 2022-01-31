@@ -5,6 +5,7 @@ import Monster from "../../assets/other/monster.png";
 import onTextShow from "../../sounds/text.mp3";
 import onToolReady from "../../sounds/loaded.wav";
 import { OnShow } from "@solariss/react-on-show";
+import CharacterCreator from "../Apps/CharacterCreator";
 const {ipcRenderer} = window.require("electron");
 
 const Tool = () => {
@@ -68,6 +69,7 @@ const Tool = () => {
       <div className="tool h-screen w-screen relative overflow-hidden flex opacity-0 z-10">
         <Sidebar />
         <ToolButton />
+        <CharacterCreator></CharacterCreator>
         <VideoOverlay fileName={"fog"} opacity={0.1}/>
         <VideoOverlay fileName={"dust"} opacity={0.05}/>
       </div>

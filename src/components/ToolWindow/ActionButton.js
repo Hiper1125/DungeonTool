@@ -16,7 +16,7 @@ const ActionButton = ({ name, icon, action }) => {
 };
 
 ActionButton.defaultProps = {
-  name: "App",
+  name: "Button",
   icon: false,
   action: () => {alert("Action Button Clicked")},
 };

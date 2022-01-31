@@ -2,6 +2,7 @@ import React from "react";
 import ActionButton from "./ActionButton";
 import ToolView from "./ToolView";
 import WindowButton from "./WindowButton";
+import PropTypes from "prop-types"; 
 
 const ToolWindow = ({
   name,
@@ -15,7 +16,7 @@ const ToolWindow = ({
   let viewComponent = null;
 
   if (view) {
-    viewComponent = <ToolView view={view} />;
+    viewComponent = <ToolView content={view} />;
   }
 
   return (
@@ -31,13 +32,13 @@ const ToolWindow = ({
           </div>
         </div>
 
-        {viewComponent}
-
         <div className="window-content h-[90%] flex flex-col items-center justify-center mt-1 space-y-3">
-          <h1 className="text-4xl">{title}</h1>
+          <h1 className="text-4xl uppercase">{title}</h1>
           <h2 className="text-2xl">{subtile}</h2>
 
-          <div className="button-bar flex flex-row justify-around space-x-6">
+          {viewComponent}
+
+          <div className="button-bar flex flex-row justify-around pt-2 space-x-6">
             {actionButtons.map((button, index) => (
               <ActionButton key={index} {...button} />
             ))}
@@ -74,5 +75,14 @@ ToolWindow.defaultProps = {
   ],
   actionButtons: [],
 };
+
+ToolView.propsTypes = {
+  name: PropTypes.string,
+  version: PropTypes.string,
+  title: PropTypes.string,
+  subtile: PropTypes.string,
+  view: PropTypes.element,
+  windowButtons: PropTypes.array,
+}
 
 export default ToolWindow;
