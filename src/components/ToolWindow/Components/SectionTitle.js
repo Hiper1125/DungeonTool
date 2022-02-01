@@ -1,18 +1,33 @@
 import React from "react";
 
-const SectionTitle = ({index, name, action}) => {
+const SectionTitle = ({ index, name, disabled, action }) => {
+  let disabledClass;
+  if (disabled === true) {
+    disabledClass = "section-title cursor-not-allowed uppercase opacity-5";
+  } else {
+    disabledClass = "section-title cursor-pointer uppercase";
+  }
+
   return (
-    <h1 className="section-title cursor-pointer" onClick={action}>
-      {index}. {name}
-    </h1>
+    <div
+      className={disabledClass}
+      onClick={() => {
+        if (!disabled) action();
+      }}
+    >
+      <h1>
+        {index}. {name}
+      </h1>
+    </div>
   );
 };
 
 SectionTitle.defaultProps = {
   index: 0,
   name: "Section",
+  disabled: false,
   action: () => {
-    console.log("Section clicked");
+    alert("Section clicked");
   },
 };
 
