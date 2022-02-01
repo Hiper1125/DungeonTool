@@ -1,6 +1,6 @@
 import React from "react";
-import ActionButton from "./ActionButton";
-import WindowButton from "./WindowButton";
+import ActionButton from "../Components/ActionButton";
+import WindowButton from "../Components/WindowButton";
 import PropTypes from "prop-types";
 
 const ToolWindow = ({
@@ -23,7 +23,7 @@ const ToolWindow = ({
   }
 
   return (
-    <div className="window absolute flex flex-col bg-solidgray w-[40rem] h-[30rem] rounded-lg border-primary border-[0.1rem] border-opacity-5 z-20">
+    <div className="window absolute flex flex-col bg-solidgray w-[50rem] h-[35rem] rounded-lg border-primary border-[0.1rem] border-opacity-5 z-20">
       <div className="title-bar flex flex-row justify-between mt-1 mx-1">
         <h1 className="text-[0.6rem] opacity-60">
           {name} v{version}
@@ -57,22 +57,6 @@ ToolWindow.defaultProps = {
   title: "Default App",
   subtile: "Default App Sub-Title",
   windowButtons: [
-    {
-      name: "minimize",
-      action: (e) => {
-        e.currentTarget.parentElement.parentElement.parentElement.classList.toggle(
-          "hidden"
-        );
-      },
-    },
-    {
-      name: "expand",
-      action: (e) => {
-        e.currentTarget.parentElement
-          .getElementsByClassName("window")[0]
-          .classList.toggle("full-screen");
-      },
-    },
     {
       name: "close",
       action: (e) => {
