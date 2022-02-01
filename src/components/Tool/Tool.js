@@ -1,11 +1,10 @@
 import Sidebar from "../Sidebar/Sidebar";
 import ToolButton from "../ToolButton/ToolButton";
 import VideoOverlay from "../Extra/VideoOverlay";
-import Monster from "../../assets/other/monster.png";
 import onTextShow from "../../sounds/text.mp3";
 import onToolReady from "../../sounds/loaded.wav";
 import { OnShow } from "@solariss/react-on-show";
-import CharacterCreator from "../Apps/CharacterCreator";
+import CharacterCreator from "../Apps/CharacterCreator/CharacterCreator.js";
 const {ipcRenderer} = window.require("electron");
 
 const Tool = () => {
