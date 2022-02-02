@@ -11,6 +11,8 @@ const ToolWindow = ({
   subtile,
   view,
   actionButtons,
+  height,
+  width,
 }) => {
   let viewComponent = null;
 
@@ -23,7 +25,10 @@ const ToolWindow = ({
   }
 
   return (
-    <div className="window absolute flex flex-col bg-solidgray w-[50rem] h-[35rem] rounded-lg border-primary border-[0.1rem] border-opacity-5 z-20">
+    <div
+      className="window absolute flex flex-col bg-solidgray rounded-lg border-primary border-[0.1rem] border-opacity-5 z-20"
+      style={({ width: width, height: height})}
+    >
       <div className="title-bar flex flex-row justify-between mt-1 mx-1">
         <h1 className="text-[0.6rem] opacity-60">
           {name} v{version}
@@ -67,6 +72,8 @@ ToolWindow.defaultProps = {
     },
   ],
   actionButtons: [],
+  height: "35rem",
+  width: "50rem",
 };
 
 ToolWindow.propsTypes = {
@@ -76,6 +83,8 @@ ToolWindow.propsTypes = {
   subtile: PropTypes.string,
   view: PropTypes.element,
   windowButtons: PropTypes.array,
+  width: PropTypes.string,
+  height: PropTypes.string,
 };
 
 export default ToolWindow;
