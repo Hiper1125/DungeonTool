@@ -3,7 +3,7 @@ import React from "react";
 const SectionTitle = ({ index, name, disabled, action }) => {
   let disabledClass;
   if (disabled === true) {
-    disabledClass = "section-title cursor-not-allowed uppercase opacity-5";
+    disabledClass = "section-title cursor-not-allowed uppercase opacity-60";
   } else {
     disabledClass = "section-title cursor-pointer uppercase";
   }
