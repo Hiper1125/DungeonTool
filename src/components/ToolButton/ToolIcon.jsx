@@ -11,7 +11,7 @@ const ToolIcon = ({ name }) => {
 
   // TODO - dynamic import the right app
   const AppName = "ItemSearcher";
-  const App = lazy(() => import(`../Apps/${AppName}/${AppName}.js`));
+  const App = lazy(() => import(`../Apps/${AppName}/${AppName}`));
 
   return (
     <div className="tool-icon relative">

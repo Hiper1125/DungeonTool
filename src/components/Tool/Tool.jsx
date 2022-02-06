@@ -4,7 +4,7 @@ import VideoOverlay from "../Extra/VideoOverlay";
 import onTextShow from "../../sounds/text.mp3";
 import onToolReady from "../../sounds/loaded.wav";
 import { OnShow } from "@solariss/react-on-show";
-import CharacterCreator from "../Apps/CharacterCreator/CharacterCreator.js";
+
 const { ipcRenderer } = window.require("electron");
 
 const Tool = () => {
