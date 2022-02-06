@@ -30,7 +30,7 @@ const ActionButton = ({ name, bold, disabled, icon, action }) => {
       }}
     >
       {iconImg}
-      <h1 className={textClass}>{window.upperText(name)}</h1>
+      <h1 className={textClass}>{window.capitalize(name)}</h1>
     </div>
   );
 };

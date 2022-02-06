@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const Navbar = ({titles}) => {
   return <div className=" bg-solidgray w-full h-16 flex flex-row items-center justify-center space-x-4">
     {titles.map((title, index) => (
-      <SectionTitle name={window.upperText(title.name)} index={index + 1} key={index} disabled={title.disabled} />
+      <SectionTitle name={window.capitalize(title.name)} index={index + 1} key={index} disabled={title.disabled} />
     ))}
   </div>;
 };

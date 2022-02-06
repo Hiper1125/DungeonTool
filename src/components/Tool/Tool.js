@@ -4,8 +4,8 @@ import VideoOverlay from "../Extra/VideoOverlay";
 import onTextShow from "../../sounds/text.mp3";
 import onToolReady from "../../sounds/loaded.wav";
 import { OnShow } from "@solariss/react-on-show";
-import ItemSearcher from "../Apps/ItemSearcher/ItemSearcher.js"
-const {ipcRenderer} = window.require("electron");
+import CharacterCreator from "../Apps/CharacterCreator/CharacterCreator.js";
+const { ipcRenderer } = window.require("electron");
 
 const Tool = () => {
   const sleep = (ms) => {
@@ -67,10 +67,10 @@ const Tool = () => {
     >
       <div className="tool h-screen w-screen relative overflow-hidden flex opacity-0 z-10">
         <Sidebar />
+        <div id="tool-content" className="tool-content h-full w-full relative"></div>
         <ToolButton />
-        <ItemSearcher />
-        <VideoOverlay fileName={"fog"} opacity={0.1}/>
-        <VideoOverlay fileName={"dust"} opacity={0.05}/>
+        <VideoOverlay fileName={"fog"} opacity={0.1} />
+        <VideoOverlay fileName={"dust"} opacity={0.05} />
       </div>
     </OnShow>
   );
